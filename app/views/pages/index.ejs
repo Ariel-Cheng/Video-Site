@@ -1,0 +1,33 @@
+<%- include ../includes/header %>
+<div class="container">
+	<div class="row">
+	    <% categories.forEach(function(cat,index){%>
+	        <div class="pannel pannel-default">
+	            <div class="pannel-heading">
+	                <h3><%= cat.name%></h3>
+	            </div>
+	            <div class="pannel-body">
+	                <% if(cat.movies && cat.movies.length>0){%>
+	                    <% cat.movies.forEach(function (item, index) { %>
+			                <div class="col-md-2">
+				                <div class="thumbnail">
+					                <a href="/detail/<%= item._id %>">
+						                <img src="<%= item.poster %>" alt="<%= item.title %>">
+						                <div class="caption">
+							                <h3><%=item.title %></h3>
+							                <p>
+								                <a href="/detail/<%= item._id %>" class="btn btn-primary" role="button">观看预告片</a>
+							                </p>
+						                </div>
+					                </a>
+				                </div>
+			                </div>
+		                <% }) %>    
+                    <% }) %>  
+	            </div>
+	        </div>
+	    <% }) %>  
+	</div>
+</div>
+
+<%- include ../includes/footer %>

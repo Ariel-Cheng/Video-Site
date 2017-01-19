@@ -1,0 +1,87 @@
+<%- include ../includes/header %>
+<div class="container">
+	<div class="row">
+		<div class="col-md-7">
+			<embed src="<%= movie.flash %>" allowFullScreen="true" quality="high" width="720" height="500" align="middle" type="application/x-shockwave-flash">
+			<div class='pannel pannel-default'>
+			    <div class='pannel-heading'>
+			        <h3>评论区</h3>
+			    </div>
+			    <div class='pannel-body'>
+			        <ul class='media-list'>
+			            <% comment.forEach(function (item, index) { %>
+			                <li class='media'>
+                                 <div class='pull-left'>
+                                    <a href="#comments"  class="comment" data-cid="<%= item._id%>" data-tid = "<%= item.from._id%>">
+                                        <img class="media-object"  src="/image/1.png" style="width:60px; height:60px;"/>
+                                    </a>
+                                 </div>
+                                 <div class='media-body'>
+                                     <h4 class='media-heading'><%= item.from.name %></h4>
+                                     <p><%= item.content%>
+                                     </p>
+                                     <% if(item.reply && item.reply.length > 0){%>
+                                        <% item.reply.forEach(function(reply, index){ %>
+                                            <div calss="media">
+                                                <div class="pull-left">
+                                                    <a href="#comments"  class="comment" data-cid="<%= item._id%>" data-tid = "<%= reply.from._id%>">
+                                                        <img class="media-object"  src="/image/1.png" style="width:60px; height:60px;"/>
+                                                    </a>
+                                                </div>
+                                                <div class="media-body">
+                                                    <h4 class="media-heading">
+                                                        <%= reply.from.name %>
+                                                        <span class="text-info">&nbsp;回复&nbsp;</span>
+                                                        <%= reply.to.name %>
+                                                    </h4>
+                                                    <p><%=reply.content%></p>
+                                                    <br>
+                                                </div>
+                                            </div>
+                                        <% }) %>
+                                    <% } %> 
+
+
+                                 </div>
+                                 <hr>
+			                </li>
+
+			            <% }) %>
+			        </ul>
+			        <div id="comments">
+			            <form id="commentForm" action="/user/comment" method='POST'>
+			                <input type='hidden' name='comment[movie]' value="<%=movie._id%>"/>
+                            <div class='form-group'>
+                                <textarea class='form-control' name="comment[content]" id="" rows="3"></textarea>
+                            </div>
+                            <%if(user){%>
+			                <input type='hidden' name='comment[from]' value="<%= user._id%>"/>
+                            <button class='btn btn-primary' type='submit'>提交</button>
+                            <%}else{%>
+                            <a href="#" class='navbar-link' data-toggle="modal" data-target='#signinModal'>登陆后再评论</a>
+                            <%}%>
+			            </form>
+			        </div>
+		        </div>
+		    </div>
+		</div>
+		<div class="col-md-5">
+			<dl class="dl-horizontal">
+				<dt>电影名字</dt>
+				<dd><%= movie.title %></dd>
+				<dt>导演</dt>
+				<dd><%= movie.doctor %></dd>	
+				<dt>国家</dt>
+				<dd><%= movie.country %></dd>	
+				<dt>语言</dt>
+				<dd><%= movie.language %></dd>	
+				<dt>上映年份</dt>
+				<dd><%= movie.year %></dd>	
+				<dt>简介</dt>
+				<dd><%= movie.summary %></dd>	
+			</dl>
+		</div>
+	</div>
+</div>
+<script src="/js/detail.js"></script>
+<%- include ../includes/footer %>

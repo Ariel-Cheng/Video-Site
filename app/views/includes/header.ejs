@@ -1,0 +1,96 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title> <%= title %> </title>
+<%- include head %>
+</head>
+
+<body style="padding-bottom:70px">
+	<div class="container">
+		<div class="row">
+			<div class="page-header">
+				<h1><%= title %></h1>
+				<small>重度科幻迷</small>	
+			</div>
+		</div>
+	</div>
+    <div class="navbar navbar-default navbar-fixed-bottom">
+        <div class='container'>
+            <div class='navbar-header'>
+                <a href="/" class='navbar-brand'>重度科幻迷</a>
+            </div>
+            <% if(user){ %>
+            <p class='navbar-text navbar-right'>
+                <span>欢迎您，<%= user.name%></span>
+                <span>&nbsp;|&nbsp;</span>
+                <a href="/logout" class='navbar-link'>登出</a>
+            </p>
+            <% }else{ %>
+            <p class='navbar-text navbar-right'>
+                <a href="#" class='navbar-link' data-toggle="modal" data-target='#signupModal'>注册</a>
+                <span>&nbsp;|&nbsp;</span>
+                <a href="#" class='navbar-link' data-toggle="modal" data-target='#signinModal'>登陆</a>
+            </p>
+            <% } %>
+        </div>  
+    </div>
+    <div id="signupModal" class='modal fade'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <form action="/user/signup" method='POST'>
+                    <div class='modal-header'>
+                        注册
+                    </div>
+                    <div class='modal-body'>
+                        <div class='form-group'>
+                            <label for="signupName">用户名</label>
+                            <input type="text" id='signupName' class='form-control' name='user[name]'>
+                        </div>
+                        <div class='form-group'>
+                            <label for="signupPassword">密码</label>
+                            <input type="text" id='signupPassword' class='form-control' name='user[password]'>
+                        </div>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>
+                            关闭
+                        </button>
+                        <button type='submit' class='btn btn-success'>
+                            提交
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div id="signinModal" class='modal fade'>
+        <div class='modal-dialog'>
+            <div class='modal-content'>
+                <form action="/user/signin" method='POST'>
+                    <div class='modal-header'>
+                        登陆
+                    </div>
+                    <div class='modal-body'>
+                        <div class='form-group'>
+                            <label for="signinName">用户名</label>
+                            <input type="text" id='signinName' class='form-control' name='user[name]'>
+                        </div>
+                        <div class='form-group'>
+                            <label for="signinPassword">密码</label>
+                            <input type="text" id='signinPassword' class='form-control' name='user[password]'>
+                        </div>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>
+                            关闭
+                        </button>
+                        <button type='submit' class='btn btn-success'>
+                            提交
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<article>

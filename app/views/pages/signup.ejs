@@ -1,0 +1,30 @@
+<%/*用于专门的注册页面，以及一些错误的重定向页面,在流程中出现问题时，能回到这个单独的页面*/%>
+<%- include ../includes/header %>
+    <div class="container">
+        <div class="row">
+            <div class = 'col-md-5'>
+                <form action="/user/signup" method='POST'>
+                    <div class='modal-body'>
+                        <div class='form-group'>
+                            <label for="signinName">用户名</label>
+                            <input type="text" id='signinName' class='form-control' name='user[name]'>
+                        </div>
+                        <div class='form-group'>
+                            <label for="signinPassword">密码</label>
+                            <input type="text" id='signinPassword' class='form-control' name='user[password]'>
+                        </div>
+                    </div>
+                    <div class='modal-footer'>
+                        <button type='button' class='btn btn-default' data-dismiss='modal'>
+                            关闭
+                        </button>
+                        <button type='submit' class='btn btn-success'>
+                            提交
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+<article>
+<%- include ../includes/footer %>

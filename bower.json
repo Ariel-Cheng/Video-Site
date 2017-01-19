@@ -1,0 +1,25 @@
+{
+  "name": "imooc",
+  "authors": [
+    "yangpan <738912168@qq.com>"
+  ],
+  "description": "一个简单的视频网站",
+  "main": "",
+  "keywords": [
+    "imooc"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/libs",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.6"
+  }
+}
