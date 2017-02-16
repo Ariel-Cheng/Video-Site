@@ -11,14 +11,28 @@
 		<div class="row">
 			<div class="page-header">
 				<h1><%= title %></h1>
-				<small>重度科幻迷</small>	
+				<div class="col-md-4">
+					<small>重度综艺迷</small>
+				</div>
+				<div class="col-md-8">
+					<form action="/results" method="get">
+						<div class="input-group col-sm-4 pull-right">
+							<input type="text" name="q" class="form-control">
+							<span class="input-group-btn">
+								<button class="btn btn-default" type="submit">
+									搜索
+								</button>
+							</span>
+						</div>
+					</form>
+				</div>
 			</div>
 		</div>
 	</div>
     <div class="navbar navbar-default navbar-fixed-bottom">
         <div class='container'>
             <div class='navbar-header'>
-                <a href="/" class='navbar-brand'>重度科幻迷</a>
+                <a href="/" class='navbar-brand'>重度综艺迷</a>
             </div>
             <% if(user){ %>
             <p class='navbar-text navbar-right'>
@@ -33,7 +47,7 @@
                 <a href="#" class='navbar-link' data-toggle="modal" data-target='#signinModal'>登陆</a>
             </p>
             <% } %>
-        </div>  
+        </div>
     </div>
     <div id="signupModal" class='modal fade'>
         <div class='modal-dialog'>

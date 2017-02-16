@@ -46,7 +46,7 @@ exports.signup = function(req, res) {
     })
 }
 
-//sign in 
+//sign in
 exports.signin = function(req, res) {
     var _user = req.body.user;
     var name = _user.name;
@@ -95,7 +95,7 @@ exports.list = function(req, res) {
             console.log(err);
         }
         res.render("pages/userlist", {
-            title: "imooc 用户列表页",
+            title: "iKan 用户列表页",
             users: users
         });
     });

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 var ObjectId = Schema.Types.ObjectId;
 
 
-var CategorySchema = new mongoose.Schema({
+var CategorySchema = new Schema({
     name:String,
     movies:[{type:ObjectId,ref:"Movie"}],
     meta:{
@@ -27,7 +27,7 @@ CategorySchema.pre("save",function (next) {//每次在存储数据之前都会�
     next();
 });
 
-CategorySchema.statics = {//添加一个静态方法，静态方法从模型上去调用 
+CategorySchema.statics = {//添加一个静态方法，静态方法从模型上去调用
     fetch:function(cb){
         return this
         .find({})
@@ -42,19 +42,3 @@ CategorySchema.statics = {//添加一个静态方法，静态方法从模型上�
 }
 
 module.exports=CategorySchema;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

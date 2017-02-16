@@ -1,5 +1,5 @@
 var express = require("express");
-var bodyParser = require('body-parser');
+var bodyParser = require('body-parser');//将表单中的提交的数据格式化
 var path = require("path");
 var session = require('express-session');
 var mongoose = require("mongoose");

@@ -1,5 +1,6 @@
 var Movie=require("../models/movie");
 var Comment=require("../models/comment");
+var Category=require("../models/category");
 var _ = require("underscore");
 
 //用来控制跟电影相关的请求
@@ -28,7 +29,7 @@ exports.detail = function(req, res){
                 console.log(err);
             };
             res.render("pages/detail",{
-                title:"imooc 详情页",
+                title:"iKan 详情页",
                 movie:movie,
                 comment:comment
             });
@@ -38,19 +39,13 @@ exports.detail = function(req, res){
 
 //后台录入页
 exports.new = function(req, res) {
+  Category.find({},function(err,categories){
     res.render("pages/admin", {
-        title: "imooc 后台录入页",
-        movie: {
-            title: "名字",
-            doctor: "导演",
-            country: "国家",
-            year: 2016,
-            poster: "海报",
-            flash: "链接",
-            summary: "简介",
-            language: "语言"
-        }
+      title: "iKan 后台录入页",
+      categories: categories,
+      movie: {}
     });
+  })
 };
 
 //更新操作
@@ -58,10 +53,13 @@ exports.update = function(req, res) {
     var id = req.params.id;
     if (id) {
         Movie.findById(id, function(err, movie) {
+          Category.find({},function(err,categories){
             res.render("pages/admin", {
                 title: "更新操作",
-                movie: movie
+                movie: movie,
+                categories:categories
             });
+          })
         });
     };
 };
@@ -73,7 +71,7 @@ exports.save = function(req, res) {
     var movieObj = req.body.movie;
     var _movie;
 
-    if (id !== "undefined" && id !== "") {
+    if (id) {
         Movie.findById(id, function(err, movie) {
             if (err) {
                 console.log(err);
@@ -87,21 +85,33 @@ exports.save = function(req, res) {
             });
         });
     } else {
-        _movie = new Movie({
-            doctor: movieObj.doctor,
-            title: movieObj.title,
-            language: movieObj.language,
-            country: movieObj.country,
-            summary: movieObj.summary,
-            flash: movieObj.flash,
-            poster: movieObj.poster,
-            year: movieObj.year
-        });
+        _movie = new Movie(movieObj);
+        var categoryId = movieObj.category;
+        var categoryName = movieObj.categoryName;
         _movie.save(function(err, movie) {
             if (err) {
                 console.log("新数据保存", err);
             }
-            res.redirect("/detail/" + movie._id);
+            if(categoryId){
+              Category.findById(categoryId,function(err,category){
+                category.movies.push(movie._id);
+                category.save(function(err,category){
+                  res.redirect("/detail/" + movie._id);
+                })
+              })
+            }else if (categoryName) {
+              var category = new Category({
+                name: categoryName,
+                movies: [movie._id]
+              })
+              category.save(function(err,category){
+                movie.category = category._id;
+                movie.save(function(err,movie){
+                    res.redirect("/detail/" + movie._id);
+                })
+              })
+            }
+
         });
     };
 };
@@ -113,7 +123,7 @@ Movie.fetch(function(err, movies) {
         console.log(err);
     }
     res.render("pages/list", {
-        title: "imooc 列表页",
+        title: "iKan 列表页",
         movies: movies
     });
 });

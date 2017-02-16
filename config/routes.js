@@ -2,6 +2,7 @@ var Index = require("../app/controllers/index");
 var Movie = require("../app/controllers/movie");
 var User = require("../app/controllers/user");
 var Comment = require("../app/controllers/comment");
+var Category = require("../app/controllers/category");
 
 
 
@@ -51,5 +52,14 @@ module.exports = function(app) {
 
     //comment
     app.post('/user/comment', User.signinRequired, Comment.save);
+
+    //category
+    app.get("/admin/category/new", User.signinRequired, User.adminRequired, Category.new);
+    app.post("/admin/category", User.signinRequired, User.adminRequired, Category.save);
+    app.get("/admin/categorylist", User.signinRequired, User.adminRequired, Category.list);
+
+    //results
+    app.get("/results", Index.search);
+
 
 }
