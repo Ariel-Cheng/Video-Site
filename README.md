@@ -21,6 +21,7 @@
 7. 视频播放详情页
 ![综艺详情页](/public/image/results/iKan综艺详情页.png)
 8. 视频评论回复功能
+
 ![评论功能](/public/image/results/iKan评论功能.png)
 9. 视频分类搜索功能
 ![电影按分类结果显示页](/public/image/results/iKan电影按分类结果显示页.png)
