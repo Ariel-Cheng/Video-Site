@@ -18,6 +18,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({
 	extended: true
 }));
+app.use(require('connect-multiparty')());//专门来处理 表单设置了'enctype="multipart/form-data"'这种类型的表单提交过来的数据。
 app.use(session({
 	secret:'imooc',
 	store:new mongoStore({
@@ -35,9 +36,9 @@ if(app.get('env') === 'development'){
 	app.set('showStackError',true);
 	//中间件 传入配置参数 返回请求的类型 请求的url路径，请求建立的status状态值的情况
 	app.use(logger(':method :url :status'));
-    //页面上的源码不是压缩过的一行，希望可读性好一点
-    app.locals.pretty = true;
-    mongoose.set('debug',true);
+  //页面上的源码不是压缩过的一行，希望可读性好一点
+  app.locals.pretty = true;
+  mongoose.set('debug',true);
 }
 
 require('./config/routes.js')(app);
@@ -45,5 +46,3 @@ require('./config/routes.js')(app);
 app.listen(port);
 app.locals.moment = require("moment");
 console.log("服务成功启动－端口号：", port);
-
-

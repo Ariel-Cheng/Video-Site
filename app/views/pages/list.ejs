@@ -4,11 +4,13 @@
 		<table class="table table-hover table-bordered">
 			<thead>
 				<tr>
-					<th>电影名字</th>
+					<th>综艺分类</th>
+					<th>综艺名字</th>
 					<th>导演</th>
 					<th>国家</th>
 					<th>上映时间</th>
 					<th>录入时间</th>
+					<th>PV</th>
 					<th>查看</th>
 					<th>更新</th>
 					<th>删除</th>
@@ -17,12 +19,14 @@
 			<tbody>
 				<% movies.forEach(function (item, index) { %>
 					<tr class="item-id-<%= item._id %>">
+						<td><%= item.category.name %></td>
 						<td><%= item.title %></td>
 						<td><%= item.doctor %></td>
 						<td><%= item.country %></td>
 						<td><%= item.year %></td>
 						<td><%= moment(item.meta.createAt).format("YYYY/MM/DD") %></td>
 						<td><a target="_blank" href="../detail/<%= item._id %>">查看</a></td>
+						<td><%= item.pv %></td>
 						<td><a href="../../admin/movie/update/<%= item._id %>">更新</a></td>
 						<td>
 							<button class="btn btn-danger del" type="button" data-id="<%= item._id %>">删除</button>

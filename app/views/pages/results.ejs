@@ -13,7 +13,11 @@
 			                <div class="col-md-2">
 				                <div class="thumbnail">
 					                <a href="/detail/<%= item._id %>">
-						                <img src="<%= item.poster %>" alt="<%= item.title %>">
+                            <%if(item.poster.indexOf('http')>-1){ %>
+                            <img src="<%= item.poster %>" alt="<%= item.title %>" style="width:149px;height:100px">
+                            <% }else{%>
+                            <img src="/upload/<%= item.poster %>" alt="<%= item.title %>" style="width:149px;height:100px">
+                            <% }%>
 						                <div class="caption">
 							                <h3><%=item.title %></h3>
 							                <p>

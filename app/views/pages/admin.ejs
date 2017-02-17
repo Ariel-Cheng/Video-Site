@@ -1,7 +1,7 @@
 <%- include ../includes/header %>
 <div class="container">
 	<div class="row">
-		<form action="/admin/movie" method="post" class="form-horizontal">
+		<form action="/admin/movie" method="post" class="form-horizontal" enctype="multipart/form-data">
 			<div class="form-group">
 				<label
 				class="col-sm-2 control-label">豆瓣同步</label>
@@ -65,6 +65,12 @@
 				<label for="inputPoster" class="col-sm-2 control-label">海报地址</label>
 				<div class="col-sm-10">
 					<input type="text" id="inputPoster" class="form-control" name="movie[poster]" value="<%= movie.poster %>">
+				</div>
+			</div>
+			<div class="form-group">
+				<label for="uploadPoster" class="col-sm-2 control-label">海报上传</label>
+				<div class="col-sm-10">
+					<input type="file" id="uploadPoster" class="form-control" name="uploadPoster">
 				</div>
 			</div>
 			<div class="form-group">

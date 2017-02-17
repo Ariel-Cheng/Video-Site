@@ -10,6 +10,10 @@ var MovieSchema = new mongoose.Schema({
 	flash:String,
 	poster:String,
 	year:Number,
+	pv:{
+        type:Number,
+        default:0
+	},
 	category:{
         type:ObjectId,
         ref:'Category'
@@ -35,7 +39,7 @@ MovieSchema.pre("save",function (next) {//每次在存储数据之前都会来�
 	next();
 });
 
-MovieSchema.statics = {//添加一个静态方法，静态方法从模型上去调用 
+MovieSchema.statics = {//添加一个静态方法，静态方法从模型上去调用
 	fetch:function(cb){
 		return this
 		.find({})
@@ -50,19 +54,3 @@ MovieSchema.statics = {//添加一个静态方法，静态方法从模型上去�
 }
 
 module.exports=MovieSchema;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
