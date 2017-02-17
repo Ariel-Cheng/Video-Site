@@ -5,6 +5,7 @@
 ![需求梳理](/public/image/results/需求梳理.png)
 
 系统展示如下：
+
 1. 用户登录
 ![登陆](/public/image/results/iKan登陆.png)
 ![登陆成功](/public/image/results/iKan登录成功.png)
@@ -23,6 +24,7 @@
 8. 视频评论回复功能
 
 ![评论功能](/public/image/results/iKan评论功能.png)
+
 9. 视频分类搜索功能
 ![电影按分类结果显示页](/public/image/results/iKan电影按分类结果显示页.png)
 10. 视频搜索
@@ -31,6 +33,7 @@
 11. 测试案例
 
 ![测试案例](/public/image/results/grunt测试案例.png)
+
 12. 外网访问正常
 
 ![内网穿透后访问](/public/image/results/内网穿透后访问.png)
