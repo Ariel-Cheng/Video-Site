@@ -5,6 +5,26 @@ var session = require('express-session');
 var mongoose = require("mongoose");
 var mongoStore = require('connect-mongo')(session);
 var logger = require('morgan');
+var fs = require('fs');
+
+//models loading
+var models_path = __dirname + '/app/models';
+var walk = function(path){
+	fs
+	.readdirSync(path)
+	.forEach(function(file){
+		var newPath = path +'/'+file;
+		var stat = fs.statSync(newPath);
+		if(stat.isFile()) {
+			if(/(.*)\.(js|coffee)/.test(file)){
+				require(newPath);
+			}
+		}else if(stat.isDirectory()){
+			walk(newPath)
+		}
+	})
+};
+walk(models_path);
 
 
 var port = process.env.PORT || 3000;
@@ -31,7 +51,8 @@ app.use(session({
 app.use(bodyParser.json());
 
 //env是dev开发环境的话
-if(app.get('env') === 'development'){
+var env = process.env.NODE_ENV || 'development'
+if(env === 'development'){
 	//设置 可以打印出错误信息
 	app.set('showStackError',true);
 	//中间件 传入配置参数 返回请求的类型 请求的url路径，请求建立的status状态值的情况

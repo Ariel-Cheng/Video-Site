@@ -7,6 +7,7 @@
                     <th>姓名</th>
                     <th>时间</th>
                     <th>查看</th>
+                    <th>权限</th>
                     <th>更新</th>
                     <th>删除</th>
                 </tr>
@@ -17,6 +18,7 @@
                         <td><%= item.name %></td>
                         <td><%= moment(item.meta.createAt).format("YYYY/MM/DD") %></td>
                         <td><a target="_blank" href="../detail/<%= item._id %>">查看</a></td>
+                        <td><%= item.role %></td>
                         <td><a href="../admin/update/<%= item._id %>">更新</a></td>
                         <td>
                             <button class="btn btn-danger del" type="button" data-id="<%= item._id %>">删除</button>

@@ -34,8 +34,37 @@ module.exports = function(grunt){
             }
         },
 
+        mochaTest: {
+          options: {
+            reporter: 'spec'
+          },
+          src: ['test/**/*.js']
+        },
+
+        less: {
+          development: {
+            options:{
+              compress:true,//压缩的程度
+              yuicompress:true,//什么样的压缩方式
+              optimization: 2
+            },
+            files: {
+              'public/build/index.css':'public/less/index.less'
+            }
+          }
+        },
+
+        uglify: {
+          development: {
+            files: {
+              'public/build/admin.min.js':'public/js/admin.js',
+              'public/build/detail.min.js':'public/js/detail.js',
+            }
+          }
+        },
+
         concurrent:{
-            tasks:['nodemon','watch'],
+            tasks:['nodemon','watch','less','uglify'],
             options:{
                 logConcurrentOutput:true
             }
@@ -45,7 +74,11 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-nodemon');
     grunt.loadNpmTasks('grunt-concurrent');
+    grunt.loadNpmTasks('grunt-mocha-test');
+    grunt.loadNpmTasks('grunt-contrib-less');//less编译
+    grunt.loadNpmTasks('grunt-contrib-uglify');//压缩
 
     grunt.option('force',true);
     grunt.registerTask('default',['concurrent']);
+    grunt.registerTask('test',['mochaTest']);
 }

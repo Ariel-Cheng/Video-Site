@@ -18,7 +18,7 @@
 				                <div class="thumbnail">
 					                <a href="/detail/<%= item._id %>">
 														<%if(item.poster.indexOf('http')>-1){ %>
-						                <img src="<%= item.poster %>" alt="<%= item.title %>" style="width:149px;height:100px">
+						                <img src="<%= item.poster %>" alt="<%= item.title %>" >
 														<% }else{%>
 														<img src="/upload/<%= item.poster %>" alt="<%= item.title %>" style="width:149px;height:100px">
 														<% }%>
