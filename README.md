@@ -29,6 +29,8 @@
 ![视频搜索功能](/public/image/results/iKan首页视频搜索功能.png)
 ![部分搜索结果显示功能](/public/image/results/iKan部分搜索结果显示页面.png)
 11. 测试案例
+
 ![测试案例](/public/image/results/grunt测试案例.png)
 12. 外网访问正常
+
 ![内网穿透后访问](/public/image/results/内网穿透后访问.png)
